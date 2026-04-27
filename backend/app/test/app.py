@@ -1,7 +1,6 @@
-# Fastener Search App
+# Fastener Search App - Test
 from database import get_connection
 
-# Fastener Search Function - Looks up a fastener by its 3-letter code and returns its details
 def lookup_fastener(code):
     conn = get_connection()
     cursor = conn.cursor()
@@ -17,12 +16,10 @@ def lookup_fastener(code):
 
     return result
 
-#Fastener Search Input
 code = input("Enter 3-letter fastener code: ")
 
 fastener = lookup_fastener(code)
 
-# Fastener Search Output - Displays the details of the fastener if found, otherwise shows a not found message
 if fastener:
     print(f"Code: {fastener['code']}")
     print(f"Description: {fastener['description']}")
