@@ -45,6 +45,8 @@ venv/
 *.db
 *.sqlite
 backend/db/*.db
+*.xlsx
+backend/db/*.xlsx
 
 # =========================
 

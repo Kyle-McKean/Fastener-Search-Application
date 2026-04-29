@@ -1,7 +1,7 @@
 # Database File  That Connects To The Database
 import sqlite3
 
-DATABASE_NAME = "/db/database.db"
+DATABASE_NAME = "backend\\db\\fastener_data.db"
 
 def get_connection():
     conn = sqlite3.connect(DATABASE_NAME)
