@@ -1,3 +1,4 @@
+-- SQLite database schema for fastener data
 CREATE TABLE fasteners (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     code TEXT NOT NULL,

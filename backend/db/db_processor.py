@@ -2,6 +2,7 @@
 import pandas as pd
 import sqlite3
 
+# Converts the .xlsx file to a .db file using pandas and sqlite3
 def convert_xlsx_to_db(xlsx_file, db_file):
     # Read the Excel file
     df = pd.read_excel(xlsx_file)
@@ -22,9 +23,7 @@ def convert_xlsx_to_db(xlsx_file, db_file):
     
     # Verify that the data was written to the database using a cursor
     # cursor = conn.cursor()
-
     # # cursor.execute(""" SELECT *  FROM data """)
-
     # result = cursor.fetchone()
     # print(result)
 

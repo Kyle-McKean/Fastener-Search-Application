@@ -22,7 +22,7 @@ const FastenerSearch: React.FC = () => {
 
     try {
       const response = await fetch(
-        `http://127.0.0.1:5000/api/fasteners/${searchValue}`
+        `http://127.0.0.1:5000/fastener/${searchValue}`
       );
 
       if (!response.ok) {
