@@ -1,6 +1,6 @@
 :root {
-  --text: #6a6175;
-  --text-h: #08060d;
+  --text: #756d80;
+  --text-h: #111827;
   --bg: #fff;
   --border: #e5e4e7;
   --code-bg: #f4f3ec;
@@ -32,9 +32,9 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
+    --text: #111827;
+    --text-h: #111827;
+    --bg: #1F2933;
     --border: #2e303a;
     --code-bg: #1f2028;
     --accent: #c084fc;
@@ -80,15 +80,17 @@ h1 {
   @media (max-width: 1024px) {
     font-size: 36px;
     margin: 20px 0;
+    color: #111827;
   }
 }
 h2 {
-  font-size: 24px;
+  font-size: 20px;
   line-height: 118%;
   letter-spacing: -0.24px;
   margin: 0 0 8px;
   @media (max-width: 1024px) {
-    font-size: 20px;
+    font-size: 18px;
+    color: #111827;
   }
 }
 p {

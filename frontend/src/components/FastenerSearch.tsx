@@ -1,67 +1,117 @@
 import React, { useState } from "react";
+import "../css/FastenerSearch.css";
 
+// Defines the structure of the fastener search data returned
 type FastenerResult = {
   code: string;
-  description: string;
-  location?: string;
+  material: string;
+  size: string;
+  length: string;
+  name: string;
 };
 
+const capitalizeWords = (value: string): string => {
+  if (!value) return "";
+
+  return value
+    .split(" ")
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
+
+const sizeFormat = (value: string): string => {
+  if (!value) return "";
+  return `${value}"`;
+}
+
+const lengthFormat = (value: string): string => {
+  if (!value) return "";
+  return `x ${value}"`;
+}
+
+// React component to handle the search functionality for fasteners
 const FastenerSearch: React.FC = () => {
+
+  // search value for the fastener input
   const [searchValue, setSearchValue] = useState<string>("");
+  
+  // result of the search, initially null
   const [result, setResult] = useState<FastenerResult | null>(null);
+  
+  // error message to display if the search fails
   const [error, setError] = useState<string>("");
 
+  // function to handle the faster search feature
   const handleSearch = async () => {
+    // Resets error and result before performing a new search
     setError("");
     setResult(null);
 
-    if (!searchValue.trim()) {
-      setError("Please enter a fastener code.");
+    // Checks if the search value is valid (not null, empty, and 3 characters long)
+    if (!searchValue.trim() || searchValue.length !== 3 || !/^[A-Z]+$/.test(searchValue)) {
+      setError("Invalid code. Please enter a 3-letter fastener code.");
       return;
     }
 
+    // Attempts to fetch the fastener data from the backend API
+    // try: fetches the data and updates the result state if successful
+    // catch: sets an error message if the fetch fails (e.g., fastener not found)
     try {
+
+      // response from the backend
       const response = await fetch(
         `http://127.0.0.1:5000/fastener/${searchValue}`
       );
 
+      // checks if the response does not contain an error
       if (!response.ok) {
         throw new Error("Fastener not found.");
       }
 
+      // parses the response data as JSON
       const data: FastenerResult = await response.json();
       setResult(data);
+    
     } catch (err) {
       setError("Could not find that fastener.");
     }
   };
 
   return (
-    <div style={styles.container}>
-      <h2 style={styles.title}>Fasteners Search</h2>
+    <div className = "container">
+      <h1 className = "title">Fasteners Search</h1>
+      <h2 className = "title">Enter a 3-letter fastener code to search</h2>
+      
 
-      <input
-        type="text"
-        placeholder="Enter 3-letter code..."
-        value={searchValue}
-        onChange={(e) => setSearchValue(e.target.value.toUpperCase())}
-        style={styles.input}
-      />
+      
+      
+      
+  <form
+      onSubmit={(e) => {
+        e.preventDefault(); // prevents page refresh
+        handleSearch();
+  }}>
+  <input
+    type="text"
+    placeholder="Enter Code"
+    value={searchValue}
+    onChange={(e) => setSearchValue(e.target.value.toUpperCase())}
+    maxLength={3}
+    className="input"
+  />
 
-      <button onClick={handleSearch} style={styles.button}>
-        Search
-      </button>
+    <button type="submit" className="button">
+      Search
+    </button>
+  </form>
 
-      <div style={styles.resultBox}>
-        {error && <p style={styles.error}>{error}</p>}
+      <div className = "resultBox">
+        {error && <p className = "error">{error}</p>}
 
         {result && (
           <>
             <p><strong>Code:</strong> {result.code}</p>
-            <p><strong>Description:</strong> {result.description}</p>
-            {result.location && (
-              <p><strong>Location:</strong> {result.location}</p>
-            )}
+            <p>{capitalizeWords(result.material)} {sizeFormat(result.size)} {lengthFormat(result.length)} {capitalizeWords(result.name)} </p>
           </>
         )}
       </div>
@@ -70,47 +120,3 @@ const FastenerSearch: React.FC = () => {
 };
 
 export default FastenerSearch;
-
-const styles: { [key: string]: React.CSSProperties } = {
-  container: {
-    width: "350px",
-    minHeight: "350px",
-    border: "2px solid #ccc",
-    borderRadius: "10px",
-    padding: "20px",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    backgroundColor: "#f9f9f9",
-  },
-  title: {
-    marginBottom: "20px",
-  },
-  input: {
-    width: "100%",
-    padding: "10px",
-    fontSize: "16px",
-    borderRadius: "5px",
-    border: "1px solid #ccc",
-    marginBottom: "12px",
-  },
-  button: {
-    width: "100%",
-    padding: "10px",
-    fontSize: "16px",
-    borderRadius: "5px",
-    border: "none",
-    cursor: "pointer",
-    backgroundColor: "#f96302",
-    color: "white",
-    fontWeight: "bold",
-  },
-  resultBox: {
-    marginTop: "20px",
-    width: "100%",
-    textAlign: "left",
-  },
-  error: {
-    color: "red",
-  },
-};
