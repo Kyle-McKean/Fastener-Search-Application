@@ -79,7 +79,7 @@ const FastenerSearch: React.FC = () => {
 
   return (
     <div className = "container">
-      <h1 className = "title">Fasteners Search</h1>
+      <h1 className = "title">Fastener Search</h1>
       <h2 className = "title">Enter a 3-letter fastener code to search</h2>
       
 
