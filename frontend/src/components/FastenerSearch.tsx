@@ -32,6 +32,8 @@ const lengthFormat = (value: string): string => {
 // React component to handle the search functionality for fasteners
 const FastenerSearch: React.FC = () => {
 
+  
+
   // search value for the fastener input
   const [searchValue, setSearchValue] = useState<string>("");
   
@@ -60,7 +62,7 @@ const FastenerSearch: React.FC = () => {
 
       // response from the backend
       const response = await fetch(
-        `http://127.0.0.1:5000/fastener/${searchValue}`
+        `${import.meta.env.VITE_API_URL}/fastener/${searchValue}`
       );
 
       // checks if the response does not contain an error
@@ -73,6 +75,7 @@ const FastenerSearch: React.FC = () => {
       setResult(data);
     
     } catch (err) {
+      console.error(err);
       setError("Could not find that fastener.");
     }
   };

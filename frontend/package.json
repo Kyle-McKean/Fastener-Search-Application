@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "frontend": "vite --host 0.0.0.0",
-    "backend": "cd ../backend/app && python app.py",
-    "dev": "concurrently \"npm run frontend\" \"npm run backend\"",
+    "backend": "cd ../backend && python app.py",
+    "dev": "npm run frontend",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
