@@ -55,6 +55,9 @@ const FastenerSearch: React.FC = () => {
       return;
     }
 
+            console.log("APIURL:", `${import.meta.env.VITE_API_URL}/fastener/${searchValue}`);
+
+
     // Attempts to fetch the fastener data from the backend API
     // try: fetches the data and updates the result state if successful
     // catch: sets an error message if the fetch fails (e.g., fastener not found)
@@ -62,7 +65,9 @@ const FastenerSearch: React.FC = () => {
 
       // response from the backend
       const response = await fetch(
+        // Uncomment for local testing
         `${import.meta.env.VITE_API_URL}/fastener/${searchValue}`
+        
       );
 
       // checks if the response does not contain an error
