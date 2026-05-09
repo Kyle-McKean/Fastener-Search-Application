@@ -55,7 +55,7 @@ const FastenerSearch: React.FC = () => {
       return;
     }
 
-            console.log("APIURL:", `${import.meta.env.VITE_API_URL}/fastener/${searchValue}`);
+            console.log("APIURL:", `${import.meta.env.VITE_API_URL}/items/${searchValue}`);
 
 
     // Attempts to fetch the fastener data from the backend API
@@ -66,7 +66,7 @@ const FastenerSearch: React.FC = () => {
       // response from the backend
       const response = await fetch(
         // Uncomment for local testing
-        `${import.meta.env.VITE_API_URL}/fastener/${searchValue}`
+        `${import.meta.env.VITE_API_URL}/items/${searchValue}`
         
       );
 
