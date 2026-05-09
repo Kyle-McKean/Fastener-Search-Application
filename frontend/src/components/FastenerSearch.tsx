@@ -55,7 +55,6 @@ const FastenerSearch: React.FC = () => {
       return;
     }
 
-            console.log("APIURL:", `${import.meta.env.VITE_API_URL}/items/${searchValue}`);
 
 
     // Attempts to fetch the fastener data from the backend API
@@ -76,9 +75,9 @@ const FastenerSearch: React.FC = () => {
       }
 
       // parses the response data as JSON
-      const data: FastenerResult = await response.json();
-      setResult(data);
-    
+      const data: FastenerResult[] = await response.json();
+      setResult(data[0]);
+                
     } catch (err) {
       console.error(err);
       setError("Could not find that fastener.");

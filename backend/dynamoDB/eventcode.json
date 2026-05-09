@@ -1,0 +1,19 @@
+{
+    "Records": [
+      {
+        "eventVersion": "2.1",
+        "eventSource": "aws:s3",
+        "awsRegion": "us-east-1",
+        "eventTime": "2025-02-28T12:34:56.789Z",
+        "eventName": "ObjectCreated:Put",
+        "s3": {
+          "bucket": {
+            "name": "fastener-db-bucket"
+          },
+          "object": {
+            "key": "FastenerDataset.csv"
+          }
+        }
+      }
+    ]
+  }
