@@ -25,7 +25,7 @@ const sizeFormat = (value: string): string => {
 }
 
 const lengthFormat = (value: string): string => {
-  if (!value) return "";
+  if (!value || value === "n/a") return "";
   return `x ${value}"`;
 }
 
